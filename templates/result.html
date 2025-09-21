@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📊 Detailed Carbon Analysis</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>">
+</head>
+<body>
+    <div class="container">
+        <h1>📊 Detailed Carbon Analysis</h1>
+        
+        <div class="carbon-display">
+            <h2>Your Total Daily Carbon Footprint</h2>
+            <div class="carbon-value">{{ carbon }} kg CO₂</div>
+            <p>Comprehensive analysis of your environmental impact across all lifestyle areas.</p>
+        </div>
+
+        <div class="insight-card {% if carbon <= 5 %}good{% elif carbon <= 10 %}moderate{% else %}high{% endif %}">
+            <h3>💡 Personalized Insights & Recommendations</h3>
+            <p>{{ insight }}</p>
+        </div>
+
+        <div class="graph-container">
+            <h3>🥧 Daily Carbon Emission Breakdown</h3>
+            <p>This pie chart shows which areas contribute most to your daily carbon footprint (travel, energy usage, diet).</p>
+            <img src="data:image/png;base64,{{ graphs.daily }}" alt="Daily Carbon Breakdown Chart">
+        </div>
+
+        <div class="graph-container">
+            <h3>📈 Weekly Carbon Emission Trend</h3>
+            <p>Observe how your carbon emission changes over the week. Trends can help you identify patterns and adjust habits accordingly.</p>
+            <img src="data:image/png;base64,{{ graphs.weekly }}" alt="Weekly Carbon Trend Chart">
+        </div>
+
+        <div class="graph-container">
+            <h3>📊 Monthly Carbon Emission Comparison</h3>
+            <p>Compare daily carbon emissions over the month to identify high-impact days and understand your consumption patterns.</p>
+            <img src="data:image/png;base64,{{ graphs.monthly }}" alt="Monthly Carbon Comparison Chart">
+        </div>
+
+        <div class="graph-container">
+            <h3>📅 Yearly Carbon Emission Trend</h3>
+            <p>Track your annual carbon footprint and see long-term patterns. This helps you understand seasonal variations and overall progress.</p>
+            <img src="data:image/png;base64,{{ graphs.yearly }}" alt="Yearly Carbon Trend Chart">
+        </div>
+
+        <div class="insight-card good">
+            <h3>🌱 Next Steps for Sustainability</h3>
+            <ul style="text-align: left; margin: 20px 0; padding-left: 20px;">
+                <li><strong>🚗 Transportation:</strong> Consider carpooling, public transport, or cycling for shorter distances</li>
+                <li><strong>⚡ Energy:</strong> Switch to LED bulbs, unplug devices when not in use, and consider renewable energy</li>
+                <li><strong>🍽️ Diet:</strong> Incorporate more plant-based meals and reduce food waste</li>
+                <li><strong>🛍️ Consumption:</strong> Buy local, seasonal produce and choose products with minimal packaging</li>
+            </ul>
+        </div>
+
+        <div class="nav-buttons">
+            <a href="/input" class="btn btn-success">✏️ Update My Inputs</a>
+            <a href="/analysis" class="btn btn-secondary">📈 Back to Analysis</a>
+            <a href="/" class="btn">🏠 Back to Home</a>
+        </div>
+    </div>
+    
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

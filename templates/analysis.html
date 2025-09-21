@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📈 Your Carbon Analysis</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📈</text></svg>">
+</head>
+<body>
+    <div class="container">
+        <h1>📈 Your Carbon Footprint Analysis</h1>
+        
+        <div class="carbon-display">
+            <h2>Your Daily Carbon Emission</h2>
+            <div class="carbon-value">{{ carbon }} kg CO₂</div>
+            <p>This is your estimated daily carbon footprint based on your lifestyle choices.</p>
+        </div>
+
+        <div class="insight-card {% if carbon <= 5 %}good{% elif carbon <= 10 %}moderate{% else %}high{% endif %}">
+            <h3>🎯 Your Impact Assessment</h3>
+            {% if carbon <= 5 %}
+                <p>✅ <strong>Excellent!</strong> Your carbon footprint is very low. You're making great sustainable choices! Keep up the fantastic work and consider sharing your eco-friendly habits with others.</p>
+            {% elif carbon <= 10 %}
+                <p>⚠️ <strong>Moderate Impact</strong> Your carbon footprint is average. There's room for improvement! Consider reducing car usage, conserving energy, or adopting more plant-based meals to make a bigger positive impact.</p>
+            {% else %}
+                <p>❌ <strong>High Impact</strong> Your carbon footprint is above average. Don't worry - every small change counts! Try eco-friendly transportation, energy-saving practices, and incorporating more plant-based foods into your diet.</p>
+            {% endif %}
+        </div>
+
+        <div class="graph-container">
+            <h3>📊 How Your Footprint is Calculated</h3>
+            <p>Your daily carbon footprint is calculated based on three main factors:</p>
+            <ul style="text-align: left; margin: 20px 0; padding-left: 20px;">
+                <li><strong>🚗 Transportation:</strong> Your daily travel distance and choice of transportation significantly impact your carbon emissions.</li>
+                <li><strong>⚡ Energy Usage:</strong> The electricity you consume at home, measured in kWh, contributes to your overall footprint.</li>
+                <li><strong>🍽️ Diet Choices:</strong> Food production has a major environmental impact. Plant-based diets typically have lower carbon footprints.</li>
+            </ul>
+        </div>
+
+        <div class="nav-buttons">
+            <a href="/result" class="btn btn-success">📊 View Detailed Charts</a>
+            <a href="/input" class="btn btn-secondary">✏️ Update My Inputs</a>
+            <a href="/" class="btn">🏠 Back to Home</a>
+        </div>
+    </div>
+    
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📊 Carbon Footprint Calculator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>">
+</head>
+<body>
+    <div class="container">
+        <h1>📊 Calculate Your Carbon Footprint</h1>
+        <p>Enter your daily habits and lifestyle choices to get a personalized carbon footprint analysis with actionable insights.</p>
+        
+        <form method="POST" action="{{ url_for('input_page') }}" id="carbonForm">
+            <!-- Daily Travel Section -->
+            <div class="form-section">
+                <label for="daily_travel">🚗 Daily Travel Distance (km)</label>
+                <input type="number" step="0.1" id="daily_travel" name="daily_travel" required placeholder="Enter your daily travel distance">
+            </div>
+
+            <div class="form-section">
+                <label for="transport_mode">🚌 Transportation Mode</label>
+                <select id="transport_mode" name="transport_mode" required>
+                    <option value="">Select your transport mode</option>
+                    <option value="car_petrol">🚗 Car - Petrol</option>
+                    <option value="car_diesel">🚗 Car - Diesel</option>
+                    <option value="car_electric">⚡ Car - Electric</option>
+                    <option value="bus">🚌 Bus</option>
+                    <option value="train">🚆 Train/Metro</option>
+                    <option value="bike">🚴 Bike</option>
+                    <option value="walk">🚶 Walking</option>
+                </select>
+            </div>
+
+            <!-- Energy Usage Section -->
+            <div class="form-section">
+                <label for="energy_usage">⚡ Daily Energy Usage (kWh)</label>
+                <input type="number" step="0.1" id="energy_usage" name="energy_usage" required placeholder="Enter your daily energy consumption">
+            </div>
+
+            <div class="form-section">
+                <label for="energy_source">🏠 Home Energy Source</label>
+                <select id="energy_source" name="energy_source" required>
+                    <option value="">Select your energy source</option>
+                    <option value="grid">🔌 Grid Electricity</option>
+                    <option value="solar">☀️ Solar / Renewable</option>
+                    <option value="hybrid">🔋 Hybrid System</option>
+                </select>
+            </div>
+
+            <!-- Diet Section -->
+            <div class="form-section">
+                <label for="diet_type">🍽️ Diet Type</label>
+                <select id="diet_type" name="diet_type" required>
+                    <option value="">Select your diet type</option>
+                    <option value="omnivore">🥩 Omnivore</option>
+                    <option value="vegetarian">🥗 Vegetarian</option>
+                    <option value="vegan">🌱 Vegan</option>
+                    <option value="pescatarian">🐟 Pescatarian</option>
+                </select>
+            </div>
+
+            <!-- Lifestyle Habits Section -->
+            <div class="form-section">
+                <label>🌿 Sustainable Lifestyle Habits</label>
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="recycle" name="habit" value="recycle">
+                        <label for="recycle">♻️ Recycles regularly</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="reusable_bags" name="habit" value="reusable_bags">
+                        <label for="reusable_bags">🛍️ Uses reusable bags</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="avoid_plastic" name="habit" value="avoid_plastic">
+                        <label for="avoid_plastic">🚫 Avoids single-use plastics</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="compost" name="habit" value="compost">
+                        <label for="compost">🌱 Composts organic waste</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="nav-buttons">
+                <button type="submit" class="btn btn-success">
+                    <span class="btn-text">📊 Calculate My Carbon Footprint</span>
+                    <span class="loading" style="display: none;"></span>
+                </button>
+                <a href="/" class="btn btn-secondary">🏠 Back to Home</a>
+            </div>
+        </form>
+    </div>
+    
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
